@@ -131,7 +131,7 @@ class UI {
       if (event.target.classList.contains("cart-remove-btn")) {
         let removeItem = event.target;
         let id = removeItem.dataset.id;
-        this.removeItem.parentElement.parentElement.remove();
+        removeItem.parentElement.parentElement.parentElement.remove();
         this.removeItem(id);
       } else if (event.target.classList.contains("quantity-minus")) {
         let lowerAmount = event.target;
@@ -144,7 +144,7 @@ class UI {
           lowerAmount.nextElementSibling.innerText = tempItem.amount;
         } else {
           lowerAmount.parentElement.parentElement.parentElement.remove();
-            this.removeItem(id);
+          this.removeItem(id);
         }
       } else if (event.target.classList.contains("quantity-plus")) {
         let higherAmount = event.target;
