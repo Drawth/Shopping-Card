@@ -272,6 +272,16 @@ button {
   opacity: 1;
 }
 
+.offcanvas {
+  transform: translateX(100%); /* Sepet başlangıçta ekran dışında */
+  transition: transform 0.5s ease-in-out; /* Geçiş animasyonu */
+}
+
+.offcanvas.show {
+  transform: translateX(0); /* Sepet görünür hale gelir */
+}
+
+
 .offcanvas-header {
   padding: 1.25rem;
 }
