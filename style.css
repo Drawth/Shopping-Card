@@ -15,14 +15,22 @@ button {
   background: transparent;
   border: none;
 }
-
-.header-area {
-  background: rgba(24, 24, 19, 0.7);
+ 
+.header-area{
   position: fixed;
-  z-index: 10;
-  width: 100%;
-  top: 0;
-  left: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(24, 24, 19, 0.7);
+    color: white;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+
+}
+.header-area.hidden {
+  transform: translateY(-100%);
 }
 
 .header-area .navbar {
@@ -73,106 +81,6 @@ button {
   color: #fff;
 }
 
-.banner-area .banner-image {
-  width: 100%;
-  z-index: -1;
-}
-
-.banner-area .banner-image > img {
-  height: 700px;
-}
-
-@media (min-width: 1400px) {
-  .banner-area .banner-image > img {
-    width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .banner-area .banner-image > img {
-    height: 600px;
-  }
-}
-
-.banner-area .banner-content {
-  position: absolute;
-  width: 100%;
-  top: 15%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-top: 3.125rem;
-}
-
-.banner-area .banner-content-subtitle {
-  color: #282825;
-  font-size: 24px;
-  letter-spacing: 0.2rem;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .banner-area .banner-content-subtitle {
-    font-size: 1.125rem;
-  }
-}
-
-.banner-area .banner-content-title {
-  font-size: 42px;
-  color: #282825;
-  font-family: 'Times New Roman', Times, serif;
-  margin-top: 1.875rem;
-}
-
-@media (max-width: 768px) {
-  .banner-area .banner-content-title {
-    font-size: 28px;
-    text-align: center;
-  }
-}
-
-.banner-area .banner-content-text {
-  font-size: 24px;
-  line-height: 35px;
-  color: #282825;
-  margin-top: 0.5rem;
-  width: 70%;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .banner-area .banner-content-text {
-    width: 100%;
-    font-size: 1.125rem;
-    padding: 0 .25rem;
-  }
-}
-
-.banner-area .banner-content-link {
-  color: #181813;
-  font-size: 1.125rem;
-  letter-spacing: 0.05rem;
-  text-decoration: none;
-  font-weight: bold;
-  background: #FFB338;
-  padding: 1rem 2.875rem;
-  border-radius: 30px;
-  margin-top: 1.875rem;
-}
-
-@media (max-width: 768px) {
-  .banner-area .banner-content-link {
-    padding: .5rem 1.875rem;
-    font-size: 0.875rem;
-  }
-}
 
 .product-area {
   margin-top: 3.5rem;

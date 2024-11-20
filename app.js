@@ -8,6 +8,23 @@ const productsDOM = document.querySelector("#products-dom");
 let buttonsDOM = [];
 let cart = [];
 
+let lastScrollY = 0;
+
+window.addEventListener("scroll", () => {
+  const header = document.querySelector(".header-area");
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY > lastScrollY) {
+    // Aşağı kaydırılıyorsa header gizlenir
+    header.classList.add("hidden");
+  } else {
+    // Yukarı kaydırılıyorsa header tekrar görünür
+    header.classList.remove("hidden");
+  }
+
+  lastScrollY = currentScrollY;
+});
+
 class Products {
   async getProducts() {
     try {
