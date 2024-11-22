@@ -65,7 +65,10 @@ class UI {
 
   filterProducts(searchTerm, products) {
     const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+      product.title
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .includes(searchTerm.toLowerCase().replace(/\s+/g, ""))
     );
     this.displayProducts(filteredProducts);
   }
@@ -243,6 +246,19 @@ document.addEventListener("DOMContentLoaded", () => {
       ui.getBagButtons();
       ui.cartLogic();
     });
+
+  //Modal
+  productsDOM.addEventListener("click", (event) => {
+    if (event.target.tagName === "IMG") {
+      const imgSrc = event.target.src; // Tıklanan resmin src'sini al
+      const modalImage = document.getElementById("modalImage");
+      modalImage.src = imgSrc; // Modal'daki img'nin src'sini güncelle
+      const imageModal = new bootstrap.Modal(
+        document.getElementById("imageModal")
+      );
+      imageModal.show(); // Modal'ı göster
+    }
+  });
 
   // Arama işlevi
   searchInput.addEventListener("input", (e) => {
