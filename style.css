@@ -81,7 +81,6 @@ button {
   color: #fff;
 }
 
-
 .search{
   margin-left: 860px;
   margin-bottom: 20px;
@@ -91,8 +90,6 @@ button {
   background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
   background-size: 20px;
 }
-
-
 
 .product-area {
   margin-top: 3.5rem;
@@ -349,4 +346,13 @@ button {
   border-radius: 4px;
   margin-top: 1rem;
 }
+
+.toast {
+  background-color: #343a40;
+  color: white;
+}
+.toast .toast-header {
+  background-color: #495057;
+}
+
 /*# sourceMappingURL=style.css.map */

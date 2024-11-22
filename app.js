@@ -26,6 +26,35 @@ window.addEventListener("scroll", () => {
   lastScrollY = currentScrollY;
 });
 
+function showToast(action, productName) {
+  const toastTitle = document.getElementById("toast-title");
+  const toastBody = document.getElementById("toast-body");
+  const toastTime = document.getElementById("toast-time");
+  const toastElement = document.getElementById("liveToast");
+
+  // Bildirim için zaman bilgisi
+  const now = new Date();
+  const timeString = `${now.getHours()}:${now
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
+
+  // İşleme göre başlık ve mesaj ayarla
+  if (action === "add") {
+    toastTitle.textContent = "Product Added";
+    toastBody.textContent = `${productName} has been added to the cart.`;
+  } else if (action === "remove") {
+    toastTitle.textContent = "Product Removed";
+    toastBody.textContent = `${productName} has been removed from the cart.`;
+  }
+
+  toastTime.textContent = timeString;
+
+  // Toast'u göster
+  const toast = new bootstrap.Toast(toastElement);
+  toast.show();
+}
+
 class Products {
   async getProducts() {
     try {
@@ -113,6 +142,8 @@ class UI {
     cartItems.innerText = itemsTotal;
   }
   addCartItem(item) {
+    console.log(item);
+
     let li = document.createElement("li");
     li.classList.add("cart-list-item");
     li.innerHTML = `
@@ -146,6 +177,8 @@ class UI {
                 </ul>
         `;
     cartContent.appendChild(li);
+    // Bildirimi göster
+    showToast("add", item.title);
   }
   showCart() {
     cartBtn.click();
@@ -153,13 +186,17 @@ class UI {
   cartLogic() {
     clearCartBtn.addEventListener("click", () => {
       this.clearCart();
+      showToast("remove", "All carts removed");
     });
 
     cartContent.addEventListener("click", (event) => {
+      console.log(event.target);
+
       if (event.target.classList.contains("cart-remove-btn")) {
         let removeItem = event.target;
         let id = removeItem.dataset.id;
         removeItem.parentElement.parentElement.parentElement.remove();
+        showToast("remove", `title ${removeItem.dataset.id}`);
         this.removeItem(id);
       } else if (event.target.classList.contains("quantity-minus")) {
         let lowerAmount = event.target;
@@ -172,7 +209,9 @@ class UI {
           lowerAmount.nextElementSibling.innerText = tempItem.amount;
         } else {
           lowerAmount.parentElement.parentElement.parentElement.remove();
+          let removeItem = event.target;
           this.removeItem(id);
+          showToast("remove", `title ${removeItem.dataset.id}`);
         }
       } else if (event.target.classList.contains("quantity-plus")) {
         let higherAmount = event.target;
