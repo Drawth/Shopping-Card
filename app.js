@@ -5,6 +5,7 @@ const cartItems = document.querySelector(".cart-items");
 const cartTotal = document.querySelector(".total-value");
 const cartContent = document.querySelector(".cart-list");
 const productsDOM = document.querySelector("#products-dom");
+const searchInput = document.getElementById("search-Input");
 let buttonsDOM = [];
 let cart = [];
 
@@ -60,6 +61,13 @@ class UI {
             `;
     });
     productsDOM.innerHTML = result;
+  }
+
+  filterProducts(searchTerm, products) {
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    this.displayProducts(filteredProducts);
   }
 
   getBagButtons() {
@@ -225,7 +233,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const ui = new UI();
   const products = new Products();
   ui.setupApp();
-
   products
     .getProducts()
     .then((products) => {
@@ -236,4 +243,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ui.getBagButtons();
       ui.cartLogic();
     });
+
+  // Arama işlevi
+  searchInput.addEventListener("input", (e) => {
+    const searchTerm = e.target.value;
+    products.getProducts().then((products) => {
+      ui.filterProducts(searchTerm, products);
+    });
+  });
 });
